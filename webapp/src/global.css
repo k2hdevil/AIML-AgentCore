@@ -1,0 +1,42 @@
+/* === Cloudscape 표준 레이아웃 ===
+   AppLayout + headerSelector 조합이 자동으로
+   상단바 고정 + 사이드바/콘텐츠 영역 관리를 처리합니다. */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+}
+
+/* === 모듈 전환 트랜지션 === */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.module-content-transition {
+  animation: fadeIn 0.2s ease-in;
+}
+
+/* === 초소형 viewport 대응 === */
+
+@media (max-width: 480px) {
+  .md-content {
+    padding: 0 4px;
+  }
+
+  .md-content pre {
+    max-width: calc(100vw - 32px);
+  }
+}

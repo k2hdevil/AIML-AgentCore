@@ -1,0 +1,706 @@
+# 모듈 6: 프로덕션 모니터링 및 관찰성
+
+## Building Agentic AI with Amazon Bedrock AgentCore
+
+---
+
+## 목차
+
+1. [관찰성과 에이전트](#1-관찰성과-에이전트)
+2. [AgentCore Observability 개요](#2-agentcore-observability-개요)
+3. [주요 개념 (세션, 트레이스, 스팬)](#3-주요-개념)
+4. [CloudWatch 생성형 AI 대시보드](#4-cloudwatch-생성형-ai-대시보드)
+5. [Observability 뷰 계층](#5-observability-뷰-계층)
+6. [구성 요구 사항 및 모범 사례](#6-구성-요구-사항-및-모범-사례)
+7. [AgentCore Evaluations](#7-agentcore-evaluations)
+8. [지식 확인 및 핵심 정리](#8-지식-확인-및-핵심-정리)
+9. [추가 Key Points - 강사 보충 자료](#9-추가-key-points---강사-보충-자료)
+
+> 🆕 표시: 교재(v1.0.4, 2026년 4월 빌드) 이후 추가/변경된 내용
+
+---
+
+## 1. 관찰성과 에이전트
+
+### 왜 에이전트에 관찰성이 중요한가?
+
+에이전트는 기존 애플리케이션과 근본적으로 다른 특성을 가집니다:
+
+| 특성 | 관찰성 필요 이유 |
+|------|-----------------|
+| **비결정적 제어 흐름** | 모델의 추론에 기반하여 매번 다른 경로를 선택 |
+| **복잡한 연쇄 호출** | 다단계 도구 호출의 근본 원인 분석 필요 |
+| **시스템 상태 평가** | 운영 성과에 대한 총체적 평가 필요 |
+| **성능 저하 감지** | 지연 시간, 오류율, 토큰 사용량 모니터링 |
+
+---
+
+## 2. AgentCore Observability 개요
+
+### 서비스 위치
+
+```d2
+# AgentCore 서비스 위치 다이어그램
+
+app: 앱
+models: "모든 모델 / 모든 프레임워크"
+
+app -> models
+
+agentcore: "AgentCore 서비스" {
+  services: "Runtime | Identity | Gateway | Memory\nBrowser | Code Interpreter | Evaluations\nPolicy | MCP | A2A" { shape: text }
+  observability: "AgentCore Observability\n(OTEL 기반)" {
+    style.stroke: "#4A90D9"
+  }
+}
+```
+
+### 3가지 핵심 이점
+
+| 이점 | 설명 |
+|------|------|
+| **품질 및 신뢰 유지** | 포괄적 가시성, 가속화된 디버깅, 문제 빠른 감지 |
+| **출시 시간 단축** | CloudWatch 제공 대시보드로 개발자 시간 절약, 수동 데이터 통합 불필요 |
+| **3P 도구 통합** | CloudWatch 외 다양한 모니터링 도구와 통합, 기존 관찰성 스택 활용 (아래 상세) |
+
+#### 3P 도구 통합 상세
+
+AgentCore Observability는 표준 **OpenTelemetry(OTEL) 호환 형식**으로 텔레메트리 데이터를 내보내므로, 기존에 사용 중인 관찰성 스택과 직접 연동할 수 있습니다.
+
+**OTEL 호환 3rd Party 솔루션:**
+
+| 솔루션 | 연동 방식 |
+|--------|-----------|
+| **Datadog** | LLM Observability SDK를 통해 에이전트 트레이스·스팬 수집 |
+| **Dynatrace** | OpenLLMetry(OpenTelemetry 기반)로 프로덕션 환경 엔드투엔드 인사이트 제공 |
+| **Grafana Cloud** | AI Observability Integration으로 LLM 메트릭, 비용, 품질 평가 모니터링 |
+| **Langfuse** | 오픈소스 LLM 관찰성 플랫폼, OTEL 표준으로 트레이스·모니터링 연동 |
+| **Elastic Observability** | Elastic APM을 통해 에이전트 추론 경로 및 성능 모니터링 |
+| **IBM Instana** | 자동 계측으로 AgentCore 에이전트 관찰성 제공 |
+| **Honeycomb** | Agent Timeline으로 에이전트 실행 궤적과 환경 변화를 통합 트레이스 뷰 제공 |
+| **Splunk** | CloudWatch Metric Streams → Kinesis Firehose 경유로 지표 실시간 전달 |
+| **New Relic** | CloudWatch Metric Streams → Kinesis Firehose 경유로 지표 실시간 전달 |
+| **Sumo Logic** | CloudWatch Metric Streams → Kinesis Firehose 경유로 지표 실시간 전달 |
+
+> **핵심 포인트**: AgentCore가 OTEL 표준 형식을 채택했기 때문에, OTEL Collector를 지원하는 모든 백엔드에 텔레메트리를 라우팅할 수 있습니다. 특정 벤더에 종속되지 않고 기존 관찰성 인프라를 그대로 활용하는 것이 설계 의도입니다.
+
+---
+
+## 3. 주요 개념
+
+### 계층 구조
+
+```d2
+# 세션-트레이스-스팬 계층 구조
+
+session: "세션 (Session)" {
+  trace: "트레이스 (Trace) — 하나의 싱글 턴" {
+    span: "스팬 (Span) — 에이전트의 하나 작업 (추론, 행동, 관찰)" {
+      sub_span: "서브 스팬 (Sub-span)"
+    }
+  }
+}
+```
+
+| 개념 | 설명 |
+|------|------|
+| **세션** | 사용자와 에이전트 간의 전체 상호작용 단위 |
+| **트레이스** | 하나의 요청에 대한 전체 실행 경로 |
+| **스팬** | 트레이스 내 개별 작업 단위 (모델 호출, 도구 실행 등) |
+| **서브 스팬** | 스팬 내 세부 작업 |
+
+#### 시나리오 예시: 쇼핑몰 고객 지원 에이전트 — 상품 불량 처리
+
+> 고객 "김민수"가 지난주 구매한 무선 이어폰에 불량이 있어 채팅으로 문의하는 상황
+
+```
+📦 세션 (Session): session-a1b2c3
+│  고객: 김민수 | 시작: 14:02:10 | 종료: 14:08:45
+│  (고객이 채팅을 열고 나서 종료할 때까지의 전체 대화)
+│
+├── 🔹 트레이스 1: "주문 내역 조회 요청" (14:02:10 ~ 14:02:14)
+│   │  고객 메시지: "지난주 주문한 무선 이어폰에 문제가 있어요"
+│   │
+│   ├── 스팬 1-1: LLM 추론 (의도 파악)  ─── 120ms
+│   │     └── 서브 스팬: 프롬프트 조립 + 토큰화 (15ms)
+│   ├── 스팬 1-2: 도구 호출 [OrderHistory API]  ─── 850ms
+│   │     └── 서브 스팬: DB 쿼리 (customer_id=C-9921) (620ms)
+│   ├── 스팬 1-3: LLM 추론 (응답 생성)  ─── 200ms
+│   │     └── 서브 스팬: 주문 #ORD-20260619 식별 + 응답 포맷팅
+│   └── 에이전트 응답: "주문번호 ORD-20260619 무선 이어폰 확인했습니다.
+│                        어떤 문제가 있으신가요?"
+│
+├── 🔹 트레이스 2: "불량 증상 접수 및 정책 확인" (14:03:02 ~ 14:03:09)
+│   │  고객 메시지: "왼쪽 이어폰에서 소리가 안 나요"
+│   │
+│   ├── 스팬 2-1: LLM 추론 (불량 유형 분류)  ─── 150ms
+│   ├── 스팬 2-2: 도구 호출 [ReturnPolicy API]  ─── 300ms
+│   │     └── 서브 스팬: 반품 기한 계산 (구매일+14일 이내 확인)
+│   ├── 스팬 2-3: 도구 호출 [InventoryCheck API]  ─── 420ms
+│   │     └── 서브 스팬: 교환 가능 재고 조회
+│   ├── 스팬 2-4: LLM 추론 (처리 옵션 결정)  ─── 180ms
+│   └── 에이전트 응답: "하드웨어 불량으로 확인됩니다. 무상 교환 또는
+│                        전액 환불 중 선택해 주세요."
+│
+├── 🔹 트레이스 3: "교환 처리 실행" (14:04:15 ~ 14:04:22)
+│   │  고객 메시지: "교환으로 해주세요"
+│   │
+│   ├── 스팬 3-1: LLM 추론 (교환 절차 계획)  ─── 100ms
+│   ├── 스팬 3-2: 도구 호출 [CreateExchange API]  ─── 1,200ms
+│   │     ├── 서브 스팬: 반품 접수 생성 (400ms)
+│   │     ├── 서브 스팬: 교환 배송 생성 (500ms)
+│   │     └── 서브 스팬: 고객 알림 이메일 발송 (300ms)
+│   ├── 스팬 3-3: LLM 추론 (확인 메시지 생성)  ─── 130ms
+│   └── 에이전트 응답: "교환 접수 완료! 반품 택배는 내일 수거 예정이며,
+│                        새 제품은 2~3일 내 배송됩니다. (교환번호: EX-88432)"
+│
+└── 🔹 트레이스 4: "추가 문의 없음 → 세션 종료" (14:08:40 ~ 14:08:45)
+    │  고객 메시지: "감사합니다, 없어요"
+    │
+    ├── 스팬 4-1: LLM 추론 (종료 의도 파악)  ─── 80ms
+    └── 에이전트 응답: "도움이 되었다니 기쁩니다. 좋은 하루 되세요!"
+```
+
+**이 시나리오에서 관찰성이 제공하는 가치:**
+
+| 관찰 대상 | 인사이트 |
+|-----------|----------|
+| 세션 전체 | 총 대화 시간 6분 35초, 4회 턴, 성공적 해결 |
+| 트레이스 3의 총 지연 | 7초 → CreateExchange API가 병목(1.2초) |
+| 스팬 2-3 오류 발생 시 | 재고 API 타임아웃 → 교환 대신 환불만 안내한 근본 원인 추적 가능 |
+| 토큰 사용량 | 세션 전체 InputToken 1,840 / OutputToken 620 |
+
+### 모델 간접 호출 지표
+
+| 카테고리 | 지표 |
+|----------|------|
+| **간접 호출** | 횟수, 지연 시간, 스로틀, 오류 수 |
+| **토큰** | 모델별 토큰 수, ModelID별 일일 토큰 수, InputTokenCount, OutputTokenCount |
+
+
+---
+
+## 4. CloudWatch 생성형 AI 대시보드
+
+### 통합 모니터링 대상
+
+AgentCore Observability는 다음 서비스의 지표를 CloudWatch에서 통합 제공:
+
+| 서비스 | 모니터링 내용 |
+|--------|-------------|
+| **에이전트** | 전체 에이전트 지표, 세션 목록 |
+| **Gateway** | 도구 호출 지표, 라우팅 성능 |
+| **메모리** | 저장/검색 지표 |
+| **Browser** | 웹 탐색 세션 지표 |
+| **Code Interpreter** | 코드 실행 지표 |
+| **Identity** | 인증 지표 |
+
+---
+
+## 5. Observability 뷰 계층
+
+### 4단계 드릴다운 구조
+
+```d2
+# Observability 뷰 계층 — 4단계 드릴다운
+
+level1: "Level 1: 에이전트 보기" {
+  desc: "• 전체 에이전트 지표\n• AgentCore Runtime 지표\n• CloudWatch에 연결된 에이전트 목록" { shape: text }
+}
+
+level2: "Level 2: 에이전트 세부 정보 보기" {
+  desc: "• 개별 에이전트 지표\n• AgentCore Runtime 지표\n• 세션 목록" { shape: text }
+}
+
+level3: "Level 3: 세션 세부 정보 보기" {
+  desc: "• 트레이스 요약 (서버 오류, 클라이언트 오류, 스로틀)\n• 세션 세부 사항\n• 트레이스 목록" { shape: text }
+}
+
+level4: "Level 4: 트레이스 세부 정보 보기" {
+  desc: "• 스팬 수, 스로틀, 클라이언트/서버 오류\n• P95 스팬 지연 시간\n• 시작/종료 시간\n• 스팬 타임라인 및 궤적" { shape: text }
+}
+
+level1 -> level2
+level2 -> level3
+level3 -> level4
+```
+
+### 트레이스 세부 정보 - 스팬 타임라인
+
+스팬 타임라인은 각 작업의 시작/종료 시간과 병렬/순차 관계를 시각적으로 표시합니다.
+
+### 트레이스 세부 정보 - 스팬 궤적
+
+스팬 궤적(Trajectory)은 에이전트의 추론 경로를 노드 그래프로 시각화합니다.
+
+### 스팬 세부 정보
+
+개별 스팬의 상세 정보: 입력/출력, 지연 시간, 메타데이터, 오류 정보 등.
+
+---
+
+## 6. 구성 요구 사항 및 모범 사례
+
+### 필수 요구 사항
+
+| 요구 사항 | 설명 |
+|-----------|------|
+| **CloudWatch 설정** | AWS 계정별로 CloudWatch에서 트랜잭션 검색 활성화 |
+| **X-Ray 구성** | 트레이스 데이터 수집 활성화 |
+| **패키지 요구 사항** | `requirements.txt`에 `aws-opentelemetry-distro` 포함 |
+| **Runtime 실행** | `opentelemetry-instrument` 명령 사용 |
+| **IAM 권한** | CloudWatch, CloudWatch Logs, X-Ray에 대한 액세스 권한 부여 |
+
+### 프로덕션 관찰성 모범 사례
+
+| 영역 | 권장 사항 |
+|------|-----------|
+| **계측** | ADOT SDK로 사용자 지정 런타임 지표 계측 |
+| **가시성** | 포괄적인 관찰성으로 프로덕션 실행 사각지대 방지 |
+| **모니터링** | 오류율, 지연 시간 임곗값, 토큰 사용량 모니터링 |
+| **추적** | 세션 수준 추적으로 고객 상호 작용을 완벽하게 추적 |
+| **가용성** | 문제를 신속하게 파악하는 동시에 고가용성 유지 |
+
+🆕 **최신 업데이트**:
+- **One-Click Enablement**: Memory/Gateway 원클릭 관찰성 활성화 (Runtime, Browser, Code Interpreter는 기존 지원)
+- **트레이스 지연 10초 미만**: 스팬+로그 완전 트레이스 즉시 조회 가능
+- **UI 개선**: 반복 스팬 번들링, 시각적 아이콘, 인프라 노이즈 필터링
+
+---
+
+## 7. AgentCore Evaluations
+
+### 에이전트 성능 평가의 필요성
+
+| 목적 | 설명 |
+|------|------|
+| **품질 보증** | 에이전트 응답의 정확성, 유용성, 안전성 검증 |
+| **성능 모니터링** | 시간 경과에 따른 품질 변화 추적 |
+| **비즈니스 영향** | 목표 달성률, 고객 만족도 측정 |
+| **위험 완화** | 유해한 응답, 환각(hallucination) 감지 |
+
+### Evaluations 아키텍처
+
+```d2
+# AgentCore Evaluations 흐름
+
+user: "사용자"
+runtime: "AgentCore Runtime"
+agent: "에이전트"
+observability: "AgentCore Observability (트레이스 수집)"
+evaluations: "AgentCore Evaluations" {
+  judge: "각 지표별 LLM 심판 호출\n심판 설명과 함께 결과 작성"
+}
+online_eval: "온라인 평가"
+ondemand_eval: "온디맨드 평가"
+owner: "에이전트 소유자 ← 결과 확인"
+
+user -> runtime -> agent
+runtime -> observability
+observability -> evaluations
+evaluations -> online_eval
+evaluations -> ondemand_eval
+online_eval -> owner
+ondemand_eval -> owner
+```
+
+
+### 평가 수준별 지표
+
+| 수준 | 지표 | 질문 |
+|------|------|------|
+| **세션** | 목표 성공률 | "에이전트가 여러 턴에 걸쳐 사용자의 전체 태스크를 완료했는가?" |
+| **트레이스** | 정확성, 충실도, 유용성, 관련성, 간결함, 일관성, 지침 준수, 거절, 유해성, 고정화 | "이 응답이 정확하고 유용한가?" |
+| **스팬** | 도구 선택 정확도, 파라미터 선택 정확도 | "올바른 도구를 선택했는가? 파라미터가 정확했는가?" |
+
+### 평가 유형
+
+| 유형 | 설명 | 사용 사례 |
+|------|------|-----------|
+| **온라인 평가** | 실시간 프로덕션 트래픽 샘플링 및 지속 모니터링 | 품질 저하 감지, 실시간 모니터링 |
+| **온디맨드 평가** | 특정 상호 작용에 대해 수시 평가 | 배포 전 테스트, CI/CD 게이트, 회귀 테스트 |
+| **🆕 Batch Evaluation** | 사전 정의된 데이터셋(시나리오)으로 에이전트를 실행하고 서버 측에서 일괄 평가 수행 | 변경 전/후 점수 비교, 회귀 감지, 대규모 테스트 스위트 실행 |
+
+#### 평가 유형별 지원 방식
+
+| 평가 방식 | 온라인 평가 | 온디맨드 평가 | Batch Evaluation |
+|-----------|:-----------:|:------------:|:----------------:|
+| **LLM-as-a-Judge** (내장 + 커스텀) | ✅ | ✅ | ✅ |
+| **코드 기반 평가** (Lambda) | ✅ | ✅ | ✅ |
+| **Ground Truth 비교** | ❌ | ✅ | ✅ |
+
+
+### 평가 방식
+
+#### LLM-as-a-Judge 평가
+
+AgentCore Evaluations는 **LLM-as-a-Judge** 기법을 사용합니다. 에이전트의 트레이스를 통일된 형식으로 변환한 뒤, 사전 정의된 프롬프트 템플릿과 채점 기준에 따라 별도의 평가용 LLM(심판 모델)이 점수를 매깁니다.
+
+```d2
+# LLM-as-a-Judge 평가 흐름
+
+trace: "에이전트 트레이스 (OTEL 수집)"
+transform: "통일된 형식으로 변환"
+judge: "평가자별 LLM 심판 호출" {
+  input: "입력: 프롬프트 템플릿 + 채점 기준 + 트레이스" { shape: text }
+  output: "출력: 점수(0~1) + 라벨 + 설명(explanation)" { shape: text }
+}
+dashboard: "CloudWatch 대시보드에 결과 표시"
+
+trace -> transform -> judge -> dashboard
+```
+
+**핵심 특성:**
+- 내장 평가자는 AWS가 최적화한 프롬프트 템플릿, 평가 모델, 채점 기준을 포함하며 수정 불가
+- 점수는 0.0~1.0 범위의 정규화된 값으로 반환
+- 각 점수에 LLM 심판이 작성한 설명(explanation)이 함께 제공되어 "왜 이 점수인지" 추적 가능
+
+##### 내장 평가자(Built-in Evaluators) 상세
+
+**세션 수준 평가자**
+
+| 평가자 | 평가 내용 | 평가 방식 |
+|--------|-----------|-----------|
+| **GoalSuccessRate** | 대화 전체에서 사용자의 목표를 성공적으로 완료했는지 판단 | 세션 내 모든 턴을 분석하여 사용자가 요청한 태스크의 완료 여부를 종합 판정 |
+
+**트레이스 수준 평가자 (개별 응답 품질)**
+
+| 평가자 | 평가 내용 | 평가 방식 |
+|--------|-----------|-----------|
+| **Correctness** | 응답의 정보가 사실적으로 정확한지 | 응답 내 주장과 사실 관계를 대조하여 사실 오류 여부 판단 |
+| **Faithfulness** | 응답이 제공된 컨텍스트/소스에 근거하는지 | 응답 내용이 도구 출력·검색 결과 등 참조 자료에서 뒷받침되는지 확인 (환각 감지) |
+| **Helpfulness** | 응답이 사용자에게 유용한지 | 지시사항 따름 여부, 일관성, 사용자의 암묵적 기대 충족 여부를 종합 평가 |
+| **Relevance** | 응답이 사용자 질문과 관련 있는지 | 질문의 핵심 의도에 직접 답하고 있는지 판단 |
+| **Conciseness** | 핵심 정보를 빠뜨리지 않으면서 적절히 간결한지 | 불필요한 반복·장황함 없이 핵심만 전달하는지 평가 |
+| **Coherence** | 응답이 논리적으로 구조화되고 일관성 있는지 | 문장 간 논리 흐름, 모순 없는 구성 여부 확인 |
+| **GuidelineAdherence** | 시스템 프롬프트에 명시된 지침을 준수하는지 | 에이전트에 설정된 가이드라인·규칙 위반 여부 판단 |
+| **Refusal** | 에이전트가 질문을 회피하거나 직접 거부하는지 | 답변 가능한 질문에 대해 부적절하게 거부하는 패턴 감지 |
+| **Harmfulness** | 응답에 유해한 콘텐츠가 포함되었는지 | 폭력, 혐오, 위험 정보 등 유해 콘텐츠 존재 여부 판단 |
+| **Stereotyping** | 응답에 고정관념이 포함되었는지 | 성별, 인종, 종교 등에 대한 편향적 표현 감지 |
+
+**스팬 수준 평가자 (도구 사용 정확도)**
+
+| 평가자 | 평가 내용 | 평가 방식 |
+|--------|-----------|-----------|
+| **ToolSelectionAccuracy** | 올바른 도구를 선택했는지 | 사용자 의도 대비 호출된 도구의 적절성 판단 |
+| **ParameterSelectionAccuracy** | 도구에 전달한 파라미터가 정확한지 | 호출된 도구의 입력값이 사용자 요청에 부합하는지 검증 |
+
+#### 코드 기반 평가 (Custom Code-Based Evaluator)
+
+LLM 심판 대신 **AWS Lambda 함수**를 평가 엔진으로 사용하여 프로그래밍적으로 에이전트 성능을 평가하는 방식입니다. FM 토큰을 소비하지 않으며, 결정론적(deterministic) 검증이 필요한 경우에 적합합니다.
+
+```d2
+# 코드 기반 평가 (Custom Code-Based Evaluator) 흐름
+
+trace2: "에이전트 트레이스 (OTEL 수집)"
+eval_service: "AgentCore Evaluations 서비스"
+lambda_fn: "사용자 Lambda 함수" {
+  input: "입력: 에이전트 스팬 데이터 (입력/출력/도구)" { shape: text }
+  logic: "로직: 비즈니스 규칙, 정규식, 외부 API 등" { shape: text }
+  output: "출력: 점수(0~1) + 라벨 + 설명" { shape: text }
+}
+dashboard2: "CloudWatch 대시보드에 결과 표시"
+
+trace2 -> eval_service
+eval_service -> lambda_fn: "Lambda 호출 (평가 입력 전달)"
+lambda_fn -> dashboard2
+```
+
+**LLM-as-a-Judge 대비 차이점:**
+
+| 항목 | LLM-as-a-Judge | 코드 기반 평가 |
+|------|:--------------:|:-------------:|
+| 평가 주체 | LLM (심판 모델) | Lambda 함수 (사용자 코드) |
+| FM 토큰 소비 | 있음 | 없음 |
+| 결정론적 여부 | 비결정적 (동일 입력에 다른 점수 가능) | 결정적 (동일 입력 → 동일 점수) |
+| 적합한 평가 | 의미적 판단 (유용성, 정확성, 일관성 등) | 구조 검증, 규칙 준수, 형식 확인 등 |
+
+**코드 기반 평가로 구현할 수 있는 예시:**
+
+| 평가 로직 | 설명 |
+|-----------|------|
+| 정규식 검증 | 응답에 이메일/전화번호 등 PII가 노출되지 않았는지 패턴 매칭 |
+| 구조 검증 | JSON 응답이 기대하는 스키마를 준수하는지 확인 |
+| 외부 API 조회 | 응답에 언급된 가격/재고 정보가 실제 DB와 일치하는지 검증 |
+| 비즈니스 규칙 | 특정 도메인 규칙 위반 여부 (예: 금융 규정 준수 여부) |
+| 응답 길이 제한 | 응답 토큰 수가 허용 범위 내인지 확인 |
+
+> **참고**: 코드 기반 평가자는 온라인 평가와 온디맨드 평가 모두에서 사용 가능하지만, A/B Testing에서는 아직 지원되지 않습니다 (내장/커스텀 LLM-as-a-Judge만 가능).
+
+#### Ground Truth 평가 (프로그래밍 방식 — LLM 호출 없음)
+
+내장 LLM 심판 외에, 사전 정의된 정답과 프로그래밍적으로 비교하는 방식도 지원합니다:
+
+| 비교 대상 | 평가 방식 |
+|-----------|-----------|
+| **Expected Response** | 에이전트 응답을 사전 정의된 기대 응답과 LLM으로 의미 비교 |
+| **Expected Trajectory** | 실제 도구 호출 시퀀스가 기대 시퀀스와 정확히 일치하는지 프로그래밍 검증 (순서·도구명·누락·추가 확인) |
+| **Assertions** | 응답이 특정 조건(어설션)을 충족하는지 확인 |
+
+### 온라인 평가 생성 코드
+
+```python
+from bedrock_agentcore_starter_toolkit import Evaluation
+
+eval_client = Evaluation()
+
+config = eval_client.create_online_config(
+    config_name="YOUR_CONFIG_NAME",
+    agent_id="YOUR_AGENT_ID",
+    sampling_rate=1.0,
+    evaluator_list=["Builtin.GoalSuccessRate", "Builtin.Helpfulness"],
+    config_description="Online Evaluation Config",
+    auto_create_execution_role=True,
+    enable_on_create=True
+)
+
+config_id = config['onlineEvaluationConfigId']
+print(f"Saved config_id: {config_id}")
+```
+
+### 온디맨드 평가 생성 코드
+
+```python
+from bedrock_agentcore_starter_toolkit import Evaluation
+
+eval_client = Evaluation()
+
+results = eval_client.run(
+    agent_id="YOUR_AGENT_ID",
+    session_id="YOUR_SESSION_ID",
+    evaluators=["Builtin.Helpfulness", "Builtin.GoalSuccessRate"]
+)
+
+successful = results.get_successful_results()
+failed = results.get_failed_results()
+
+print(f"Successful: {len(successful)}")
+print(f"Failed: {len(failed)}")
+
+if successful:
+    result = successful[0]
+    print(f"Evaluator: {result.evaluator_name}")
+    print(f"Score: {result.value:.2f}")
+    print(f"Label: {result.label}")
+    if result.explanation:
+        print(f"Explanation: {result.explanation[:150]}...")
+```
+
+### CloudWatch에서 평가 보기
+
+| 뷰 | 내용 |
+|----|------|
+| **에이전트 세부 정보 보기** | 평가자 목록, 평균 점수, 시간 경과에 따른 변화 |
+| **Evaluations 탭** | 평가자 세부 정보, 평가된 세션/트레이스 목록 |
+| **트레이스 세부 정보 보기** | 세션/트레이스/스팬의 평가자 점수 |
+
+---
+
+## 8. 지식 확인 및 핵심 정리
+
+### 지식 확인 문제
+
+**문제 1**: 에이전트 성과 모니터링 + 도구 호출/결정 과정 이해 + 전체 흐름 파악
+- ✅ **정답: B** - OpenTelemetry 계측으로 AgentCore Observability를 구성하여 세션, 트레이스, 스팬을 캡처
+- 핵심: AgentCore Observability = OTEL 기반 + 세션/트레이스/스팬 계층 = 전체 흐름 가시성
+
+**문제 2**: 개별 에이전트 지표 + Runtime 지표 + 세션 목록을 제공하는 뷰는?
+- ✅ **정답: B** - 에이전트 세부 정보 보기
+- 핵심: Level 2 뷰 = 개별 에이전트에 대한 상세 정보
+
+### 모듈 학습 목표 달성 확인
+
+이 모듈을 완료하면 다음을 수행할 수 있습니다:
+- ✅ 프로덕션 모니터링을 위한 AgentCore Observability를 구성
+- ✅ Amazon CloudWatch 통합 및 특수한 추적을 구현
+- ✅ AgentCore Evaluations의 핵심 기능을 설명
+
+---
+
+## 9. 추가 Key Points - 강사 보충 자료
+
+### 9.1 🆕 Evaluations GA (2026년 3월)
+
+AgentCore Evaluations가 정식 출시되면서 대폭 강화:
+
+| 기능 | 설명 |
+|------|------|
+| **13개 내장 평가자** | 응답 품질, 안전성, 태스크 완료, 도구 사용 |
+| **Ground Truth 지원** | 참조 답변, 행동 어설션, 예상 도구 실행 시퀀스 비교 |
+| **Custom Evaluators** | LLM 기반 또는 코드 기반(Lambda) 평가 로직 |
+| **평가 지연 50% 개선** | 증분 상태 관리로 P90 처리 시간 대폭 단축 |
+
+### 9.2 🆕 Agent Performance Loop (2026년 5월)
+
+관찰 → 평가 → 최적화 → 배포의 폐쇄 루프:
+
+```d2
+# Agent Performance Loop (관찰 → 평가 → 최적화 → 배포 폐쇄 루프)
+
+observe: "관찰\n(Observe)\nObservability"
+evaluate: "평가\n(Evaluate)\nEvaluations"
+optimize: "최적화\n(Optimize)\nOptimization"
+deploy: "배포\n(Deploy)\nRuntime"
+
+observe -> evaluate -> optimize -> deploy
+deploy -> observe
+```
+
+**3가지 새 기능**:
+
+| 기능 | 설명 |
+|------|------|
+| **Optimization** | 프로덕션 트레이스 + 평가 결과 분석 → 프롬프트/도구 설명 개선 추천 → A/B 테스트 검증 |
+| **Batch Evaluation** | 과거/큐레이션된 세션 리플레이 → 변경 전/후 점수 비교 → 회귀 감지 |
+| **User Simulation** | LLM 기반 가상 사용자로 다중 턴 대화 생성 → 스크립트 테스트 케이스 너머의 행동 발견 |
+
+**🆕 NY Summit 2026 업데이트 (2026년 6월) - Optimization 정식 강화**:
+
+2026년 6월 AWS Summit New York에서 AgentCore는 "프로덕션 트레이스를 지속적 개선으로 전환"하는
+최적화 기능을 발표했습니다. 가장 위험한 실패는 오류를 던지는 실패가 아니라 **대시보드에서는
+정상으로 보이는 조용한 실패(silent failures)**라는 점을 강조합니다. (예: 실행하지 않은 주문 수정을
+확인했다고 응답, API 타임아웃 시 재고를 지어냄, 승인 단계를 건너뛰었는데 99% 성공률로 표시)
+
+| 기능 | 상태 | 설명 |
+|------|------|------|
+| **Insights (인사이트)** | **Preview** | 수백 개 세션에 걸친 실패·의도·궤적 인사이트. ① **Failure insights**: 반복되는 실패 패턴(무오류 조용한 실패 포함) 발견·근본 원인 설명·영향 규모순 랭킹 ② **Intent insights**: 사용자의 실제 의도별 요청 클러스터링 ③ **Trajectory insights**: 에이전트가 태스크를 처리하는 경로 그룹화. 일/주 단위 연속 모니터링 또는 배포·불만 급증 후 타깃 조사 (수 분 내 결과) |
+| **Recommendations** | **GA** | 트레이스와 평가 출력을 분석하여 시스템 프롬프트·도구 설명에 대한 구체적 개선 제안 |
+| **Batch Evaluation** | **GA** | 정의된 테스트 데이터셋으로 추천을 검증, 집계 점수 보고 → 프로덕션 도달 전 회귀 감지 |
+| **A/B Testing** | **GA** | 라이브 프로덕션 트래픽을 분할하여 에이전트 버전 간 통제된 비교 → 커밋 전 실제 증거 확보 |
+
+> **중요 - 실행 환경 독립성**: 이 모든 기능은 에이전트가 **AgentCore Runtime, AWS Lambda,
+> Amazon EKS, 또는 비(非)AWS 환경** 어디서 실행되든 동작합니다.
+
+> **교재 'User Simulation'에 대한 참고**: 본 가이드는 이전 릴리스 기준으로 User Simulation을
+> 폐쇄 루프의 한 축으로 소개했습니다. NY Summit 2026 공식 발표의 핵심 구성은
+> **Insights → Recommendations → Batch Evaluation → A/B Testing**입니다. (User Simulation 관련
+> 세부 API는 변경될 수 있으므로 최신 공식 문서로 확인 권장)
+
+### 9.3 🆕 Cross-Account Monitoring (2026년 4월)
+
+엔터프라이즈 환경에서 여러 계정의 에이전트를 중앙에서 모니터링:
+
+```d2
+# Cross-Account Monitoring (교차 계정 모니터링)
+
+central: "중앙 모니터링 계정" {
+  data: "로그 + 메트릭 + 트레이스 + Evaluations 결과"
+  limits: "제한: 최대 100,000 로그 그룹 / 모니터링 계정\n최대 5개 모니터링 계정 / 소스 계정" { shape: text }
+}
+
+source_a: "소스 계정 A (에이전트 1, 2, 3)"
+source_b: "소스 계정 B (에이전트 4, 5)"
+source_c: "소스 계정 C (에이전트 6, 7, 8, 9)"
+
+source_a -> central
+source_b -> central
+source_c -> central
+```
+
+### 9.4 🆕 Observability 성능 개선
+
+| 개선 항목 | 이전 | 현재 |
+|-----------|------|------|
+| 트레이스 조회 지연 | 스팬 10초, 로그 30초 | **10초 미만** (스팬+로그 통합) |
+| 평가 처리 시간 | 기준 | **50% 단축** (P90) |
+| 로그 쿼리 비용 | 기준 | **60-80% 감소** |
+| X-Ray 리소스 제한 | 1,200개 | **무제한** (와일드카드) |
+
+### 9.5 Observability 구성 체크리스트
+
+#### 기본 구성
+- [ ] CloudWatch 트랜잭션 검색 활성화
+- [ ] X-Ray 트레이스 수집 활성화
+- [ ] `aws-opentelemetry-distro` 패키지 포함
+- [ ] IAM 권한 부여 (CloudWatch, Logs, X-Ray)
+- [ ] 🆕 Memory/Gateway One-Click 활성화
+
+#### 프로덕션 구성
+- [ ] 알람 설정 (오류율, P95 지연 시간, 토큰 사용량)
+- [ ] 온라인 평가 구성 (sampling_rate 설정)
+- [ ] 🆕 Cross-Account Monitoring (멀티 계정 환경)
+- [ ] 🆕 Batch Evaluation CI/CD 파이프라인 통합
+- [ ] 대시보드 커스터마이징
+
+### 9.6 평가자 선택 가이드
+
+| 평가 목적 | 추천 평가자 |
+|-----------|------------|
+| 전체 태스크 완료 여부 | `Builtin.GoalSuccessRate` |
+| 응답 유용성 | `Builtin.Helpfulness` |
+| 사실 정확성 | `Builtin.Correctness` |
+| 소스 충실도 | `Builtin.Faithfulness` |
+| 안전성 | `Builtin.Harmfulness`, `Builtin.Refusal` |
+| 도구 사용 정확도 | `Builtin.ToolSelectionAccuracy`, `Builtin.ParameterAccuracy` |
+| 🆕 커스텀 비즈니스 로직 | Custom Evaluator (Lambda) |
+| 🆕 참조 답변 비교 | Ground Truth Evaluator |
+
+### 9.7 Evaluations를 CI/CD에 통합하는 패턴
+
+```
+코드 변경 → PR 생성
+    │
+    ▼
+CI 파이프라인:
+    ├── 빌드 & 테스트
+    ├── 🆕 Batch Evaluation (과거 세션 리플레이)
+    │       └── 점수 비교: 이전 버전 vs 새 버전
+    │       └── 회귀 감지 시 → PR 블록
+    ├── 🆕 User Simulation (가상 사용자 테스트)
+    │       └── 엣지 케이스 발견
+    └── 배포 승인 게이트
+         └── 점수 임곗값 충족 시 → 배포 진행
+```
+
+### 9.8 강의 토론 포인트
+
+1. **"구축 중인 에이전트에 대해 평가를 통해 어떻게 설계를 개선할 수 있는가?"**
+   - 도구 선택 정확도 낮음 → 도구 설명 개선
+   - 목표 성공률 낮음 → 시스템 프롬프트 개선
+   - 유해성 점수 높음 → 가드레일 추가
+
+2. **"온라인 평가 vs 온디맨드 평가 - 언제 어떤 것을 사용하는가?"**
+   - 온라인: 프로덕션 품질 지속 모니터링 (항상 켜두기)
+   - 온디맨드: 배포 전 검증, 특정 이슈 조사, CI/CD 게이트
+
+3. **"어떤 지표를 가장 먼저 모니터링해야 하는가?"**
+   - 1순위: 오류율, 목표 성공률
+   - 2순위: 지연 시간, 토큰 사용량
+   - 3순위: 도구 선택 정확도, 유해성
+
+---
+
+## 교재 대비 변경 요약
+
+| 교재 내용 (v1.0.4) | 현재 상태 (2026년 5월) |
+|---------------------|----------------------|
+| Evaluations 기본 설명 | **🆕 GA** + 13개 내장 평가자 + Ground Truth + Custom |
+| 온라인/온디맨드만 | **🆕 + Batch Evaluation + User Simulation + Optimization** |
+| 기본 트레이스 지연 | **🆕 10초 미만** (스팬+로그 통합) |
+| 단일 계정 모니터링 | **🆕 Cross-Account Monitoring** (최대 100K 로그 그룹) |
+| 수동 관찰성 활성화 | **🆕 One-Click Enablement** (Memory/Gateway) |
+| 기본 UI | **🆕 UI 개선** (스팬 번들링, 아이콘, 노이즈 필터) |
+| X-Ray 1,200 리소스 제한 | **🆕 무제한** (와일드카드) |
+| 기본 평가 속도 | **🆕 50% 빠른 평가** (증분 상태 관리) |
+| Optimization 미출시 | 🆕 **NY Summit 2026**: Insights(Preview), Recommendations·Batch Eval·A/B Testing(GA), 실행 환경 독립(Runtime/Lambda/EKS/비AWS) |
+
+---
+
+## 참고 자료
+
+- [AgentCore Observability 공식 문서](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability.html)
+- [AgentCore Evaluations 문서](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html)
+- [Optimization 문서](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/optimization.html)
+- [Batch Evaluations 시작하기](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/batch-evaluations-getting-started.html)
+- [User Simulation 문서](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/user-simulation.html)
+- [Cross-Account Monitoring](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-cross-account.html)
+- [Observability 구성](https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html)
+- [AgentCore 신규 Optimization 기능 (NY Summit 2026)](https://aws.amazon.com/about-aws/whats-new/2026/06/amazon-bedrock-agentcore-new-optimization-capabilities/)
+- [New in Amazon Bedrock AgentCore - 지속적 학습 (NY Summit 2026)](https://aws.amazon.com/blogs/machine-learning/new-in-amazon-bedrock-agentcore-build-agents-with-broader-knowledge-and-continuous-learning/)
+
+---
+
+*본 문서는 MLAGAC-10-KO-KR-M06-DeploymentObservablity_InstructorDeck.pdf의 내용을 기반으로 작성되었으며,
+🆕 표시된 내용은 2026년 5월 기준 최신 서비스 업데이트를 반영한 강사 보충 자료입니다.*
+
+*문서 버전: 2.1 | 작성일: 2026-05-28 | 최종 수정: 2026-06-23 | 업데이트 기준: 2026년 6월 AWS Summit New York 반영*

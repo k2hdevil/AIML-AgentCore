@@ -1,0 +1,1223 @@
+{
+  "pbtResults": {
+    "1.4 Property test: Completion toggle preserves data integrity": {
+      "status": "passed",
+      "lastRunTimestamp": 1782613261681
+    },
+    "1.5 Property test: Progress calculation correctness": {
+      "status": "passed",
+      "lastRunTimestamp": 1782613262518
+    },
+    "1.3 Property test: Progress persistence round-trip": {
+      "status": "passed",
+      "lastRunTimestamp": 1782613283581
+    },
+    "4.3 Property test: Copy preserves code content": {
+      "status": "passed",
+      "lastRunTimestamp": 1782615187643
+    },
+    "5.2 Property test: D2 encoding round-trip": {
+      "status": "passed",
+      "lastRunTimestamp": 1782615192431
+    },
+    "4.4 Property test: Syntax highlighting tokenization": {
+      "status": "passed",
+      "lastRunTimestamp": 1782615989202
+    }
+  },
+  "executionHistory": {
+    "1.1 Vitest + Testing Library + fast-check 설정": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631106
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612660192
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612860193
+      }
+    ],
+    "1.2 ProgressContext 및 useProgress Hook 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631208
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612869677
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613086291
+      }
+    ],
+    "1.3 Property test: Progress persistence round-trip": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631255
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613090909
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613411339
+      }
+    ],
+    "1.4 Property test: Completion toggle preserves data integrity": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631296
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613091702
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613412106
+      }
+    ],
+    "1.5 Property test: Progress calculation correctness": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631340
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613092502
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613412832
+      }
+    ],
+    "2.1 ProgressSummary 컴포넌트 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631376
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613093338
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613413735
+      }
+    ],
+    "2.2 ModuleCompletionToggle 컴포넌트 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631443
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613094151
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613414620
+      }
+    ],
+    "2.3 App.jsx에 ProgressProvider 및 진도 UI 통합": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631501
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613423547
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613540304
+      }
+    ],
+    "2.4 Unit tests: ProgressSummary 및 ModuleCompletionToggle": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631544
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613549367
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613741589
+      }
+    ],
+    "3. Checkpoint - 진도 추적 기능 검증": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631576
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616982648
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782617056430
+      }
+    ],
+    "4.1 CopyButton 컴포넌트 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631601
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613550188
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613742412
+      }
+    ],
+    "4.2 CodeBlockWrapper 컴포넌트 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631624
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613758223
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614037156
+      }
+    ],
+    "4.3 Property test: Copy preserves code content": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631645
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614042928
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616009957
+      }
+    ],
+    "4.4 Property test: Syntax highlighting tokenization": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631674
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614043656
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616010640
+      }
+    ],
+    "4.5 Unit tests: CopyButton 및 CodeBlockWrapper": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631701
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614044535
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616011539
+      }
+    ],
+    "5.1 D2Renderer 컴포넌트 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631725
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613759077
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614037760
+      }
+    ],
+    "5.2 Property test: D2 encoding round-trip": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631760
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614045354
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616012319
+      }
+    ],
+    "5.3 Unit tests: D2Renderer": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631792
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782614046142
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616013092
+      }
+    ],
+    "6.1 MarkdownRenderer에 components prop 기반 코드 블록 라우팅 적용": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631817
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616022947
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616295172
+      }
+    ],
+    "6.2 Integration tests: MarkdownRenderer 통합": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631844
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616305058
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616467706
+      }
+    ],
+    "7. Checkpoint - 코드 블록 및 다이어그램 기능 검증": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631868
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782617060942
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782617124068
+      }
+    ],
+    "8.1 Cloudscape 디자인 토큰 기반 스타일링 통일": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631892
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616305726
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616468383
+      }
+    ],
+    "8.2 반응형 레이아웃 및 스크롤 안정성 확보": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631918
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616478705
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616645465
+      }
+    ],
+    "8.3 Unit tests: 반응형 breakpoint 및 레이아웃": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631943
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616654863
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616971981
+      }
+    ],
+    "9. Final checkpoint - 전체 기능 통합 검증": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782612631962
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782617129085
+      },
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782617208014
+      }
+    ],
+    "1. 테스트 프레임워크 설정 및 ProgressContext 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613412913
+      }
+    ],
+    "2. ProgressSummary 및 ModuleCompletionToggle 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782613741631
+      }
+    ],
+    "4. CodeBlockWrapper 및 CopyButton 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616011588
+      }
+    ],
+    "5. D2Renderer 구현": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616013141
+      }
+    ],
+    "6. MarkdownRenderer 통합 리팩터링": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616467740
+      }
+    ],
+    "8. UI 개선 및 레이아웃 안정성": [
+      {
+        "executionId": "bfb90817-c714-4df2-a902-c21fa60a9bdc",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782616972028
+      }
+    ],
+    "10. Mermaid → D2 전환 (Requirement 8)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626107833
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629398823
+      }
+    ],
+    "10.2a 콘텐츠 파일의 ASCII art 다이어그램을 D2로 변환": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626107914
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626910649
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627783534
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382649
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794398353
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800512453
+      }
+    ],
+    "10.1 M02-Runtime_Summary.md의 5개 Mermaid 다이어그램을 D2 구문으로 변환": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626107957
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626122231
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626525997
+      },
+      {
+        "executionId": "aa427013-e015-48d1-8d85-d3992919af54",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630055941
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382682
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794397508
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800511310
+      }
+    ],
+    "10.2 변환된 콘텐츠를 webapp/public/content/에 복사": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626107990
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626539304
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626888983
+      },
+      {
+        "executionId": "aa427013-e015-48d1-8d85-d3992919af54",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630056562
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382733
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800550335
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801530315
+      }
+    ],
+    "10.3 MarkdownRenderer에서 MermaidRenderer 제거": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108026
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626540093
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626889775
+      },
+      {
+        "executionId": "aa427013-e015-48d1-8d85-d3992919af54",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630057384
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382793
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800551461
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801527398
+      }
+    ],
+    "10.4 CodeBlockWrapper에서 mermaid 코드 블록 처리 업데이트": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108055
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626911374
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627784319
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382840
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800552732
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801528266
+      }
+    ],
+    "10.5 mermaid 패키지 의존성 제거": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108090
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626912191
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627785228
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382875
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800553812
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801529228
+      }
+    ],
+    "10.6 Mermaid 관련 테스트 업데이트": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108125
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627793266
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628868236
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382912
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801540520
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801967076
+      }
+    ],
+    "11.1 DarkModeContext 및 useDarkMode Hook 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108160
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626123071
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626526600
+      },
+      {
+        "executionId": "aa427013-e015-48d1-8d85-d3992919af54",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630058241
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382987
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794400196
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800513443
+      }
+    ],
+    "12.1 NAVIGATION_TREE 데이터 구조 정의": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108225
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626540881
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626890816
+      },
+      {
+        "executionId": "dbdde640-4d03-4a29-b169-1b500cfff7fd",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630085469
+      }
+    ],
+    "12.2 TreeNavigation 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108284
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626913036
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627786916
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383024
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800554855
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801531194
+      }
+    ],
+    "13.1 SearchBar 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108323
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626913848
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383067
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801538561
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801967674
+      }
+    ],
+    "13.2 DarkModeToggle 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108358
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627794167
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628868665
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383153
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801539482
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801968548
+      }
+    ],
+    "13.3 App.jsx TopNavigation 리디자인": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108407
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627795221
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628869480
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383194
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801979468
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802358785
+      }
+    ],
+    "14.1 BreadcrumbNav 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108462
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627796176
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628870454
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383226
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801541584
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801969423
+      }
+    ],
+    "14.3 TagBadges 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108490
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627797160
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628871171
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383255
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801542576
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801970383
+      }
+    ],
+    "14.5 AppFooter 컴포넌트 구현": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108536
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628878706
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629209360
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383299
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801978372
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802359672
+      }
+    ],
+    "15.1 App.jsx에 새 컴포넌트 통합": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108571
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628879573
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629207864
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383350
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801980552
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802360582
+      }
+    ],
+    "15.2 DarkModeProvider 통합": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108614
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628880452
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629208684
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383399
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801981636
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802361401
+      }
+    ],
+    "15.4 Final checkpoint - 전체 기능 통합 검증": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626108652
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629216028
+      },
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629392025
+      }
+    ],
+    "11. DarkModeContext 구현 (Requirement 7)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782626526680
+      },
+      {
+        "executionId": "dbdde640-4d03-4a29-b169-1b500cfff7fd",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782630083737
+      }
+    ],
+    "12. TreeNavigation 구현 (Requirement 7)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782627786994
+      }
+    ],
+    "10.2b 변환된 ASCII art D2 다이어그램을 webapp/public/content/에 동기화": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628868299
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801967118
+      }
+    ],
+    "13. TopNavigation 리디자인 (Requirement 7)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782628869519
+      }
+    ],
+    "14. BreadcrumbNav, TagBadges, AppFooter 구현 (Requirement 7)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629209395
+      }
+    ],
+    "15. App.jsx 통합 및 최종 검증 (Requirement 7)": [
+      {
+        "executionId": "f83c5be8-9354-46bf-9fbf-67a6940fffce",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782629392131
+      }
+    ],
+    "10. Mermaid → D2 전환 (요구사항 8)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794382566
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802768671
+      }
+    ],
+    "15.4 최종 체크포인트 - 전체 기능 통합 검증": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782794383439
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802369272
+      },
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802767750
+      }
+    ],
+    "11. DarkModeContext 구현 (요구사항 7)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782800513480
+      }
+    ],
+    "12. TreeNavigation 구현 (요구사항 7)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782801531240
+      }
+    ],
+    "13. TopNavigation 리디자인 (요구사항 7)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802358866
+      }
+    ],
+    "14. BreadcrumbNav, TagBadges, AppFooter 구현 (요구사항 7)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802359721
+      }
+    ],
+    "15. App.jsx 통합 및 최종 검증 (요구사항 7)": [
+      {
+        "executionId": "2d8fb597-df65-4bcc-a722-90017bc56ffe",
+        "chatSessionId": "sess_2dbf9207-5609-49fa-93fd-e2bd4987e62e",
+        "timestamp": 1782802767924
+      }
+    ]
+  }
+}
